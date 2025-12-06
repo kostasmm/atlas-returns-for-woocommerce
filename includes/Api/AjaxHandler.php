@@ -327,6 +327,7 @@ class AjaxHandler {
 		}
 
 		// Otherwise, search by phone number.
+		// phpcs:disable WordPress.DB.SlowDBQuery.slow_db_query_meta_key,WordPress.DB.SlowDBQuery.slow_db_query_meta_value -- Required to find orders by phone.
 		$args = array(
 			'meta_key'    => '_billing_phone',
 			'meta_value'  => $identifier,
@@ -336,6 +337,7 @@ class AjaxHandler {
 			'orderby'     => 'date',
 			'order'       => 'DESC',
 		);
+		// phpcs:enable WordPress.DB.SlowDBQuery.slow_db_query_meta_key,WordPress.DB.SlowDBQuery.slow_db_query_meta_value
 
 		// Support HPOS.
 		if ( class_exists( '\Automattic\WooCommerce\Utilities\OrderUtil' ) &&
