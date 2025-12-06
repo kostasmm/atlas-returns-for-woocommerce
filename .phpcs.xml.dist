@@ -1,0 +1,35 @@
+<?xml version="1.0"?>
+<ruleset name="Atlas Returns for WooCommerce">
+	<description>Custom PHPCS ruleset for Atlas Returns for WooCommerce.</description>
+
+	<!-- What to scan -->
+	<file>.</file>
+
+	<!-- Exclude third-party libraries -->
+	<exclude-pattern>/freemius/*</exclude-pattern>
+	<exclude-pattern>/vendor/*</exclude-pattern>
+	<exclude-pattern>/node_modules/*</exclude-pattern>
+	<exclude-pattern>/assets/dist/*</exclude-pattern>
+	<exclude-pattern>/tests/*</exclude-pattern>
+
+	<!-- Use WordPress-Extra standard -->
+	<rule ref="WordPress-Extra">
+		<!-- Allow short array syntax -->
+		<exclude name="Generic.Arrays.DisallowShortArraySyntax"/>
+	</rule>
+
+	<!-- Check for PHP compatibility -->
+	<config name="testVersion" value="7.4-"/>
+
+	<!-- Use colors in output -->
+	<arg name="colors"/>
+
+	<!-- Show progress -->
+	<arg value="ps"/>
+
+	<!-- PHP file extensions only -->
+	<arg name="extensions" value="php"/>
+
+	<!-- Set text domain for i18n -->
+	<config name="text_domain" value="atlas-returns-for-woocommerce"/>
+</ruleset>

@@ -20,6 +20,7 @@ Thumbs.db
 # Environment files
 .env
 .env.local
+.env.*
 
 # Testing
 /coverage/
@@ -31,10 +32,18 @@ composer.lock
 # npm
 package-lock.json
 
-# Freemius SDK (downloaded separately)
-# /freemius/
-
 # Local development
 *.sql
 *.bak
 debug.log
+
+# Release builds (local ZIP creation)
+/atlas-returns-release/
+
+# WordPress specific
+wp-config.php
+/uploads/
+
+# OS files
+Desktop.ini
+ehthumbs.db
