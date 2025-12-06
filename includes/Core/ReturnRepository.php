@@ -189,7 +189,8 @@ class ReturnRepository {
 			$where .= $wpdb->prepare( ' AND created_at <= %s', $filters['date_to'] );
 		}
 
-		return (int) $wpdb->get_var( "SELECT COUNT(*) FROM {$this->table_name} WHERE {$where}" ); // phpcs:ignore WordPress.DB.PreparedSQL.InterpolatedNotPrepared
+		// phpcs:ignore WordPress.DB.PreparedSQL.InterpolatedNotPrepared,PluginCheck.Security.DirectDB.UnescapedDBParameter -- $where built with prepare().
+		return (int) $wpdb->get_var( "SELECT COUNT(*) FROM {$this->table_name} WHERE {$where}" );
 	}
 
 	/**
@@ -230,11 +231,12 @@ class ReturnRepository {
 			$where .= $wpdb->prepare( ' AND created_at <= %s', $date_to . ' 23:59:59' );
 		}
 
+		// phpcs:ignore WordPress.DB.PreparedSQL.InterpolatedNotPrepared,PluginCheck.Security.DirectDB.UnescapedDBParameter -- $where built with prepare().
 		return $wpdb->get_results(
 			"SELECT reason, COUNT(*) as count, SUM(cost_difference) as total_cost
              FROM {$this->table_name}
              WHERE {$where}
-             GROUP BY reason" // phpcs:ignore WordPress.DB.PreparedSQL.InterpolatedNotPrepared
+             GROUP BY reason"
 		);
 	}
 
@@ -290,6 +292,7 @@ class ReturnRepository {
 			$where .= $wpdb->prepare( ' AND created_at <= %s', $date_to . ' 23:59:59' );
 		}
 
+		// phpcs:ignore WordPress.DB.PreparedSQL.InterpolatedNotPrepared,PluginCheck.Security.DirectDB.UnescapedDBParameter -- $where built with prepare().
 		return $wpdb->get_row(
 			"SELECT
                 COUNT(*) as total_returns,
@@ -298,7 +301,7 @@ class ReturnRepository {
                 COALESCE(SUM(CASE WHEN cost_difference < 0 THEN ABS(cost_difference) ELSE 0 END), 0) as total_refunded,
                 COALESCE(SUM(CASE WHEN cost_difference > 0 THEN cost_difference ELSE 0 END), 0) as total_charged
              FROM {$this->table_name}
-             WHERE {$where}" // phpcs:ignore WordPress.DB.PreparedSQL.InterpolatedNotPrepared
+             WHERE {$where}"
 		);
 	}
 }
