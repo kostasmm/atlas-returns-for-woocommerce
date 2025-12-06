@@ -27,8 +27,8 @@ class Activator {
 		if ( ! self::check_requirements() ) {
 			deactivate_plugins( plugin_basename( ATLR_PLUGIN_FILE ) );
 			wp_die(
-				esc_html__( 'Atlas Returns for WooCommerce requires WooCommerce to be installed and active.', 'atlas-returns' ),
-				esc_html__( 'Plugin Activation Error', 'atlas-returns' ),
+				esc_html__( 'Atlas Returns for WooCommerce requires WooCommerce to be installed and active.', 'atlas-returns-for-woocommerce' ),
+				esc_html__( 'Plugin Activation Error', 'atlas-returns-for-woocommerce' ),
 				array( 'back_link' => true )
 			);
 		}
@@ -149,7 +149,7 @@ class Activator {
 		}
 
 		if ( false === get_option( 'atlr_special_handling_note' ) ) {
-			update_option( 'atlr_special_handling_note', __( 'SPECIAL HANDLING - PICKUP ON DELIVERY', 'atlas-returns' ) );
+			update_option( 'atlr_special_handling_note', __( 'SPECIAL HANDLING - PICKUP ON DELIVERY', 'atlas-returns-for-woocommerce' ) );
 		}
 
 		if ( false === get_option( 'atlr_enable_email_notifications' ) ) {

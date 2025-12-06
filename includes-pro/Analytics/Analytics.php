@@ -85,15 +85,15 @@ class Analytics {
 				'ajaxUrl' => admin_url( 'admin-ajax.php' ),
 				'nonce'   => wp_create_nonce( 'atlr_analytics_nonce' ),
 				'i18n'    => array(
-					'returns'        => __( 'Returns', 'atlas-returns' ),
-					'costDifference' => __( 'Cost Difference', 'atlas-returns' ),
-					'customerFault'  => __( 'Customer Fault', 'atlas-returns' ),
-					'companyFault'   => __( 'Company Fault', 'atlas-returns' ),
-					'defective'      => __( 'Defective', 'atlas-returns' ),
-					'noData'         => __( 'No data available', 'atlas-returns' ),
-					'loading'        => __( 'Loading...', 'atlas-returns' ),
-					'refunded'       => __( 'Refunded', 'atlas-returns' ),
-					'charged'        => __( 'Charged', 'atlas-returns' ),
+					'returns'        => __( 'Returns', 'atlas-returns-for-woocommerce' ),
+					'costDifference' => __( 'Cost Difference', 'atlas-returns-for-woocommerce' ),
+					'customerFault'  => __( 'Customer Fault', 'atlas-returns-for-woocommerce' ),
+					'companyFault'   => __( 'Company Fault', 'atlas-returns-for-woocommerce' ),
+					'defective'      => __( 'Defective', 'atlas-returns-for-woocommerce' ),
+					'noData'         => __( 'No data available', 'atlas-returns-for-woocommerce' ),
+					'loading'        => __( 'Loading...', 'atlas-returns-for-woocommerce' ),
+					'refunded'       => __( 'Refunded', 'atlas-returns-for-woocommerce' ),
+					'charged'        => __( 'Charged', 'atlas-returns-for-woocommerce' ),
 				),
 				'colors'  => array(
 					'primary'   => '#667eea',
@@ -114,7 +114,7 @@ class Analytics {
 		check_ajax_referer( 'atlr_analytics_nonce', 'nonce' );
 
 		if ( ! current_user_can( 'manage_atlas_returns' ) ) {
-			wp_send_json_error( __( 'Permission denied.', 'atlas-returns' ) );
+			wp_send_json_error( __( 'Permission denied.', 'atlas-returns-for-woocommerce' ) );
 		}
 
 		$period = isset( $_POST['period'] ) ? sanitize_text_field( wp_unslash( $_POST['period'] ) ) : '30days';
@@ -139,7 +139,7 @@ class Analytics {
 		check_ajax_referer( 'atlr_analytics_nonce', 'nonce' );
 
 		if ( ! current_user_can( 'manage_atlas_returns' ) ) {
-			wp_send_json_error( __( 'Permission denied.', 'atlas-returns' ) );
+			wp_send_json_error( __( 'Permission denied.', 'atlas-returns-for-woocommerce' ) );
 		}
 
 		$chart  = isset( $_POST['chart'] ) ? sanitize_text_field( wp_unslash( $_POST['chart'] ) ) : '';
@@ -163,7 +163,7 @@ class Analytics {
 				break;
 
 			default:
-				wp_send_json_error( __( 'Invalid chart type.', 'atlas-returns' ) );
+				wp_send_json_error( __( 'Invalid chart type.', 'atlas-returns-for-woocommerce' ) );
 		}
 
 		wp_send_json_success( $data );

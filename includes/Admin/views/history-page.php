@@ -20,32 +20,32 @@ $total_pages = ceil( $total / $per_page );
 
 <div class="wrap atlr-wrap">
 	<h1>
-		<?php esc_html_e( 'Return History', 'atlas-returns' ); ?>
+		<?php esc_html_e( 'Return History', 'atlas-returns-for-woocommerce' ); ?>
 		<?php if ( $is_pro ) : ?>
 			<a href="#" id="atlr-export-csv" class="page-title-action">
-				<?php esc_html_e( 'Export CSV', 'atlas-returns' ); ?>
+				<?php esc_html_e( 'Export CSV', 'atlas-returns-for-woocommerce' ); ?>
 			</a>
 		<?php endif; ?>
 	</h1>
 
 	<?php if ( empty( $returns ) ) : ?>
 		<div class="atlr-no-returns">
-			<p><?php esc_html_e( 'No returns have been processed yet.', 'atlas-returns' ); ?></p>
+			<p><?php esc_html_e( 'No returns have been processed yet.', 'atlas-returns-for-woocommerce' ); ?></p>
 			<a href="<?php echo esc_url( admin_url( 'admin.php?page=atlas-returns' ) ); ?>" class="button button-primary">
-				<?php esc_html_e( 'Process a Return', 'atlas-returns' ); ?>
+				<?php esc_html_e( 'Process a Return', 'atlas-returns-for-woocommerce' ); ?>
 			</a>
 		</div>
 	<?php else : ?>
 		<table class="wp-list-table widefat fixed striped atlr-history-table">
 			<thead>
 				<tr>
-					<th class="column-id"><?php esc_html_e( 'ID', 'atlas-returns' ); ?></th>
-					<th class="column-original"><?php esc_html_e( 'Original Order', 'atlas-returns' ); ?></th>
-					<th class="column-return"><?php esc_html_e( 'Return Order', 'atlas-returns' ); ?></th>
-					<th class="column-reason"><?php esc_html_e( 'Reason', 'atlas-returns' ); ?></th>
-					<th class="column-cost"><?php esc_html_e( 'Cost Difference', 'atlas-returns' ); ?></th>
-					<th class="column-date"><?php esc_html_e( 'Date', 'atlas-returns' ); ?></th>
-					<th class="column-status"><?php esc_html_e( 'Status', 'atlas-returns' ); ?></th>
+					<th class="column-id"><?php esc_html_e( 'ID', 'atlas-returns-for-woocommerce' ); ?></th>
+					<th class="column-original"><?php esc_html_e( 'Original Order', 'atlas-returns-for-woocommerce' ); ?></th>
+					<th class="column-return"><?php esc_html_e( 'Return Order', 'atlas-returns-for-woocommerce' ); ?></th>
+					<th class="column-reason"><?php esc_html_e( 'Reason', 'atlas-returns-for-woocommerce' ); ?></th>
+					<th class="column-cost"><?php esc_html_e( 'Cost Difference', 'atlas-returns-for-woocommerce' ); ?></th>
+					<th class="column-date"><?php esc_html_e( 'Date', 'atlas-returns-for-woocommerce' ); ?></th>
+					<th class="column-status"><?php esc_html_e( 'Status', 'atlas-returns-for-woocommerce' ); ?></th>
 				</tr>
 			</thead>
 			<tbody>

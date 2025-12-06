@@ -78,7 +78,7 @@ class CostCalculator {
 				$result->add_error(
 					sprintf(
 						/* translators: %s: product SKU */
-						__( 'Product with SKU %s is not in the original order.', 'atlas-returns' ),
+						__( 'Product with SKU %s is not in the original order.', 'atlas-returns-for-woocommerce' ),
 						$sku
 					)
 				);
@@ -91,7 +91,7 @@ class CostCalculator {
 				$result->add_error(
 					sprintf(
 						/* translators: %s: product SKU */
-						__( 'Product with SKU %s not found.', 'atlas-returns' ),
+						__( 'Product with SKU %s not found.', 'atlas-returns-for-woocommerce' ),
 						$sku
 					)
 				);
@@ -118,7 +118,7 @@ class CostCalculator {
 				$result->add_error(
 					sprintf(
 						/* translators: %s: product SKU */
-						__( 'Product with SKU %s not found.', 'atlas-returns' ),
+						__( 'Product with SKU %s not found.', 'atlas-returns-for-woocommerce' ),
 						$sku
 					)
 				);
@@ -173,12 +173,12 @@ class CostCalculator {
 	 */
 	public static function get_return_reasons( $include_pro = true ) {
 		$reasons = array(
-			self::REASON_CUSTOMER_FAULT => __( 'Customer Fault', 'atlas-returns' ),
+			self::REASON_CUSTOMER_FAULT => __( 'Customer Fault', 'atlas-returns-for-woocommerce' ),
 		);
 
 		if ( $include_pro ) {
-			$reasons[ self::REASON_COMPANY_FAULT ]          = __( 'Company Fault - Special Handling', 'atlas-returns' );
-			$reasons[ self::REASON_COMPANY_FAULT_NO_ADMIN ] = __( 'Company Fault - No Special Handling', 'atlas-returns' );
+			$reasons[ self::REASON_COMPANY_FAULT ]          = __( 'Company Fault - Special Handling', 'atlas-returns-for-woocommerce' );
+			$reasons[ self::REASON_COMPANY_FAULT_NO_ADMIN ] = __( 'Company Fault - No Special Handling', 'atlas-returns-for-woocommerce' );
 		}
 
 		return $reasons;
@@ -191,9 +191,9 @@ class CostCalculator {
 	 */
 	public static function get_reason_descriptions() {
 		return array(
-			self::REASON_CUSTOMER_FAULT         => __( 'Customer made an error in their order. Customer is charged product difference, shipping, and COD fee.', 'atlas-returns' ),
-			self::REASON_COMPANY_FAULT          => __( 'Company sent wrong product. Customer is not charged shipping or COD fee. Special handling for pickup on delivery.', 'atlas-returns' ),
-			self::REASON_COMPANY_FAULT_NO_ADMIN => __( 'Customer received defective product. Replacement sent without pickup. No extra charges.', 'atlas-returns' ),
+			self::REASON_CUSTOMER_FAULT         => __( 'Customer made an error in their order. Customer is charged product difference, shipping, and COD fee.', 'atlas-returns-for-woocommerce' ),
+			self::REASON_COMPANY_FAULT          => __( 'Company sent wrong product. Customer is not charged shipping or COD fee. Special handling for pickup on delivery.', 'atlas-returns-for-woocommerce' ),
+			self::REASON_COMPANY_FAULT_NO_ADMIN => __( 'Customer received defective product. Replacement sent without pickup. No extra charges.', 'atlas-returns-for-woocommerce' ),
 		);
 	}
 }

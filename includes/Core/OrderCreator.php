@@ -39,8 +39,8 @@ class OrderCreator {
 
 			// Set payment method title based on method.
 			$payment_titles = array(
-				'cod'  => __( 'Cash on Delivery', 'atlas-returns' ),
-				'bacs' => __( 'Bank Transfer', 'atlas-returns' ),
+				'cod'  => __( 'Cash on Delivery', 'atlas-returns-for-woocommerce' ),
+				'bacs' => __( 'Bank Transfer', 'atlas-returns-for-woocommerce' ),
 			);
 			$new_order->set_payment_method_title(
 				isset( $payment_titles[ $payment_method ] ) ? $payment_titles[ $payment_method ] : $payment_method
@@ -52,13 +52,13 @@ class OrderCreator {
 
 			// Add customer note for special handling.
 			if ( CostCalculator::REASON_COMPANY_FAULT_NO_ADMIN !== $reason ) {
-				$special_note = get_option( 'atlr_special_handling_note', __( 'SPECIAL HANDLING - PICKUP ON DELIVERY', 'atlas-returns' ) );
+				$special_note = get_option( 'atlr_special_handling_note', __( 'SPECIAL HANDLING - PICKUP ON DELIVERY', 'atlas-returns-for-woocommerce' ) );
 				$new_order->set_customer_note( '*** ' . $special_note . ' ***' );
 			}
 
 			// Add shipping item.
 			$shipping_item = new \WC_Order_Item_Shipping();
-			$shipping_item->set_method_title( __( 'Return Shipping', 'atlas-returns' ) );
+			$shipping_item->set_method_title( __( 'Return Shipping', 'atlas-returns-for-woocommerce' ) );
 			$shipping_item->set_method_id( 'atlas_returns_shipping' );
 
 			// Set shipping cost (0 if customer owes nothing or has credit).
@@ -69,7 +69,7 @@ class OrderCreator {
 			// Add COD fee if applicable.
 			$cod_fee = $calculation->get_total_cost_difference() < 0 ? 0 : $calculation->get_cod_fee();
 			if ( $cod_fee > 0 ) {
-				$this->add_fee( $new_order, __( 'COD Fee', 'atlas-returns' ), $cod_fee );
+				$this->add_fee( $new_order, __( 'COD Fee', 'atlas-returns-for-woocommerce' ), $cod_fee );
 			}
 
 			// Add new products.
@@ -124,7 +124,7 @@ class OrderCreator {
 			$new_order->add_order_note(
 				sprintf(
 					/* translators: %d: original order ID */
-					__( 'Return order created from order #%d via Atlas Returns.', 'atlas-returns' ),
+					__( 'Return order created from order #%d via Atlas Returns.', 'atlas-returns-for-woocommerce' ),
 					$original_order->get_id()
 				)
 			);
@@ -136,7 +136,7 @@ class OrderCreator {
 			$original_order->add_order_note(
 				sprintf(
 					/* translators: %d: return order ID */
-					__( 'Return order #%d created via Atlas Returns.', 'atlas-returns' ),
+					__( 'Return order #%d created via Atlas Returns.', 'atlas-returns-for-woocommerce' ),
 					$new_order->get_id()
 				)
 			);

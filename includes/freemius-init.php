@@ -48,7 +48,7 @@ function atlr_fs() {
 				'has_addons'          => false,
 				'has_paid_plans'      => true,
 				'menu'                => array(
-					'slug'    => 'atlas-returns',
+					'slug'    => 'atlas-returns-for-woocommerce',
 					'contact' => true,
 					'support' => false,
 					'parent'  => array(

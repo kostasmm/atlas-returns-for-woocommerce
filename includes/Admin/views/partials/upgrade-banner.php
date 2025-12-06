@@ -25,21 +25,21 @@ $upgrade_url = function_exists( 'atlr_fs' ) ? atlr_fs()->get_upgrade_url() : '#'
 			<span class="dashicons dashicons-star-filled"></span>
 		</div>
 		<div class="atlr-upgrade-text">
-			<strong><?php esc_html_e( 'Upgrade to Pro', 'atlas-returns' ); ?></strong>
+			<strong><?php esc_html_e( 'Upgrade to Pro', 'atlas-returns-for-woocommerce' ); ?></strong>
 			<p>
 				<?php
 				printf(
 					/* translators: %s: Number of remaining returns */
-					esc_html__( 'You have %s returns remaining this month.', 'atlas-returns' ),
+					esc_html__( 'You have %s returns remaining this month.', 'atlas-returns-for-woocommerce' ),
 					'<strong>' . esc_html( $remaining ) . '</strong>'
 				);
 				?>
-				<?php esc_html_e( 'Upgrade for unlimited returns, all return reasons, and analytics dashboard.', 'atlas-returns' ); ?>
+				<?php esc_html_e( 'Upgrade for unlimited returns, all return reasons, and analytics dashboard.', 'atlas-returns-for-woocommerce' ); ?>
 			</p>
 		</div>
 		<div class="atlr-upgrade-cta">
 			<a href="<?php echo esc_url( $upgrade_url ); ?>" class="button button-primary atlr-upgrade-button">
-				<?php esc_html_e( 'Upgrade Now', 'atlas-returns' ); ?>
+				<?php esc_html_e( 'Upgrade Now', 'atlas-returns-for-woocommerce' ); ?>
 			</a>
 		</div>
 	</div>

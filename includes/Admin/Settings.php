@@ -77,7 +77,7 @@ class Settings {
 			array(
 				'type'              => 'string',
 				'sanitize_callback' => 'sanitize_textarea_field',
-				'default'           => __( 'SPECIAL HANDLING - PICKUP ON DELIVERY', 'atlas-returns' ),
+				'default'           => __( 'SPECIAL HANDLING - PICKUP ON DELIVERY', 'atlas-returns-for-woocommerce' ),
 			)
 		);
 
@@ -104,28 +104,28 @@ class Settings {
 		// Add settings sections.
 		add_settings_section(
 			'atlr_general_section',
-			__( 'General Settings', 'atlas-returns' ),
+			__( 'General Settings', 'atlas-returns-for-woocommerce' ),
 			array( $this, 'render_general_section' ),
 			'atlas-returns-settings'
 		);
 
 		add_settings_section(
 			'atlr_costs_section',
-			__( 'Cost Settings', 'atlas-returns' ),
+			__( 'Cost Settings', 'atlas-returns-for-woocommerce' ),
 			array( $this, 'render_costs_section' ),
 			'atlas-returns-settings'
 		);
 
 		add_settings_section(
 			'atlr_notifications_section',
-			__( 'Notification Settings', 'atlas-returns' ),
+			__( 'Notification Settings', 'atlas-returns-for-woocommerce' ),
 			array( $this, 'render_notifications_section' ),
 			'atlas-returns-settings'
 		);
 
 		add_settings_section(
 			'atlr_advanced_section',
-			__( 'Advanced Settings', 'atlas-returns' ),
+			__( 'Advanced Settings', 'atlas-returns-for-woocommerce' ),
 			array( $this, 'render_advanced_section' ),
 			'atlas-returns-settings'
 		);
@@ -134,13 +134,13 @@ class Settings {
 		// Costs section.
 		add_settings_field(
 			'atlr_shipping_cost',
-			__( 'Shipping Cost', 'atlas-returns' ),
+			__( 'Shipping Cost', 'atlas-returns-for-woocommerce' ),
 			array( $this, 'render_number_field' ),
 			'atlas-returns-settings',
 			'atlr_costs_section',
 			array(
 				'id'          => 'atlr_shipping_cost',
-				'description' => __( 'Shipping cost charged for customer-fault returns.', 'atlas-returns' ),
+				'description' => __( 'Shipping cost charged for customer-fault returns.', 'atlas-returns-for-woocommerce' ),
 				'step'        => '0.01',
 				'min'         => '0',
 			)
@@ -148,13 +148,13 @@ class Settings {
 
 		add_settings_field(
 			'atlr_cod_fee',
-			__( 'COD Fee', 'atlas-returns' ),
+			__( 'COD Fee', 'atlas-returns-for-woocommerce' ),
 			array( $this, 'render_number_field' ),
 			'atlas-returns-settings',
 			'atlr_costs_section',
 			array(
 				'id'          => 'atlr_cod_fee',
-				'description' => __( 'Cash on Delivery fee charged for customer-fault returns.', 'atlas-returns' ),
+				'description' => __( 'Cash on Delivery fee charged for customer-fault returns.', 'atlas-returns-for-woocommerce' ),
 				'step'        => '0.01',
 				'min'         => '0',
 			)
@@ -163,13 +163,13 @@ class Settings {
 		// General section.
 		add_settings_field(
 			'atlr_coupon_validity_days',
-			__( 'Coupon Validity (Days)', 'atlas-returns' ),
+			__( 'Coupon Validity (Days)', 'atlas-returns-for-woocommerce' ),
 			array( $this, 'render_number_field' ),
 			'atlas-returns-settings',
 			'atlr_general_section',
 			array(
 				'id'          => 'atlr_coupon_validity_days',
-				'description' => __( 'Number of days before credit coupons expire.', 'atlas-returns' ),
+				'description' => __( 'Number of days before credit coupons expire.', 'atlas-returns-for-woocommerce' ),
 				'step'        => '1',
 				'min'         => '1',
 			)
@@ -177,51 +177,51 @@ class Settings {
 
 		add_settings_field(
 			'atlr_default_payment_method',
-			__( 'Default Payment Method', 'atlas-returns' ),
+			__( 'Default Payment Method', 'atlas-returns-for-woocommerce' ),
 			array( $this, 'render_payment_method_field' ),
 			'atlas-returns-settings',
 			'atlr_general_section',
 			array(
 				'id'          => 'atlr_default_payment_method',
-				'description' => __( 'Default payment method for replacement orders.', 'atlas-returns' ),
+				'description' => __( 'Default payment method for replacement orders.', 'atlas-returns-for-woocommerce' ),
 			)
 		);
 
 		add_settings_field(
 			'atlr_special_handling_note',
-			__( 'Special Handling Note', 'atlas-returns' ),
+			__( 'Special Handling Note', 'atlas-returns-for-woocommerce' ),
 			array( $this, 'render_textarea_field' ),
 			'atlas-returns-settings',
 			'atlr_general_section',
 			array(
 				'id'          => 'atlr_special_handling_note',
-				'description' => __( 'Note added to orders requiring special handling (pickup on delivery).', 'atlas-returns' ),
+				'description' => __( 'Note added to orders requiring special handling (pickup on delivery).', 'atlas-returns-for-woocommerce' ),
 			)
 		);
 
 		// Notifications section.
 		add_settings_field(
 			'atlr_enable_email_notifications',
-			__( 'Email Notifications', 'atlas-returns' ),
+			__( 'Email Notifications', 'atlas-returns-for-woocommerce' ),
 			array( $this, 'render_checkbox_field' ),
 			'atlas-returns-settings',
 			'atlr_notifications_section',
 			array(
 				'id'    => 'atlr_enable_email_notifications',
-				'label' => __( 'Enable email notifications for coupon creation.', 'atlas-returns' ),
+				'label' => __( 'Enable email notifications for coupon creation.', 'atlas-returns-for-woocommerce' ),
 			)
 		);
 
 		// Advanced section.
 		add_settings_field(
 			'atlr_remove_data_on_uninstall',
-			__( 'Remove Data on Uninstall', 'atlas-returns' ),
+			__( 'Remove Data on Uninstall', 'atlas-returns-for-woocommerce' ),
 			array( $this, 'render_checkbox_field' ),
 			'atlas-returns-settings',
 			'atlr_advanced_section',
 			array(
 				'id'    => 'atlr_remove_data_on_uninstall',
-				'label' => __( 'Delete all plugin data when uninstalling.', 'atlas-returns' ),
+				'label' => __( 'Delete all plugin data when uninstalling.', 'atlas-returns-for-woocommerce' ),
 			)
 		);
 	}
@@ -230,28 +230,28 @@ class Settings {
 	 * Render general section description.
 	 */
 	public function render_general_section() {
-		echo '<p>' . esc_html__( 'Configure general return processing settings.', 'atlas-returns' ) . '</p>';
+		echo '<p>' . esc_html__( 'Configure general return processing settings.', 'atlas-returns-for-woocommerce' ) . '</p>';
 	}
 
 	/**
 	 * Render costs section description.
 	 */
 	public function render_costs_section() {
-		echo '<p>' . esc_html__( 'Configure costs charged for customer-fault returns.', 'atlas-returns' ) . '</p>';
+		echo '<p>' . esc_html__( 'Configure costs charged for customer-fault returns.', 'atlas-returns-for-woocommerce' ) . '</p>';
 	}
 
 	/**
 	 * Render notifications section description.
 	 */
 	public function render_notifications_section() {
-		echo '<p>' . esc_html__( 'Configure email notification settings.', 'atlas-returns' ) . '</p>';
+		echo '<p>' . esc_html__( 'Configure email notification settings.', 'atlas-returns-for-woocommerce' ) . '</p>';
 	}
 
 	/**
 	 * Render advanced section description.
 	 */
 	public function render_advanced_section() {
-		echo '<p>' . esc_html__( 'Advanced plugin settings.', 'atlas-returns' ) . '</p>';
+		echo '<p>' . esc_html__( 'Advanced plugin settings.', 'atlas-returns-for-woocommerce' ) . '</p>';
 	}
 
 	/**
@@ -322,8 +322,8 @@ class Settings {
 
 		// Get available payment gateways.
 		$gateways = array(
-			'cod'  => __( 'Cash on Delivery', 'atlas-returns' ),
-			'bacs' => __( 'Bank Transfer', 'atlas-returns' ),
+			'cod'  => __( 'Cash on Delivery', 'atlas-returns-for-woocommerce' ),
+			'bacs' => __( 'Bank Transfer', 'atlas-returns-for-woocommerce' ),
 		);
 
 		// Add WooCommerce payment gateways if available.

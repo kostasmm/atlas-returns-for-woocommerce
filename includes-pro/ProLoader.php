@@ -60,7 +60,7 @@ class ProLoader {
 	 * Render Pro badge.
 	 */
 	public function render_pro_badge() {
-		echo '<span class="atlr-pro-active-badge">' . esc_html__( 'Pro', 'atlas-returns' ) . '</span>';
+		echo '<span class="atlr-pro-active-badge">' . esc_html__( 'Pro', 'atlas-returns-for-woocommerce' ) . '</span>';
 	}
 
 	/**

@@ -28,10 +28,10 @@ class Admin {
 	public function add_admin_menu() {
 		// Main menu page.
 		add_menu_page(
-			__( 'Atlas Returns', 'atlas-returns' ),
-			__( 'Atlas Returns', 'atlas-returns' ),
+			__( 'Atlas Returns', 'atlas-returns-for-woocommerce' ),
+			__( 'Atlas Returns', 'atlas-returns-for-woocommerce' ),
 			'manage_atlas_returns',
-			'atlas-returns',
+			'atlas-returns-for-woocommerce',
 			array( $this, 'render_main_page' ),
 			'dashicons-image-rotate',
 			56
@@ -39,19 +39,19 @@ class Admin {
 
 		// Submenu - Returns (same as main).
 		add_submenu_page(
-			'atlas-returns',
-			__( 'Process Return', 'atlas-returns' ),
-			__( 'Process Return', 'atlas-returns' ),
+			'atlas-returns-for-woocommerce',
+			__( 'Process Return', 'atlas-returns-for-woocommerce' ),
+			__( 'Process Return', 'atlas-returns-for-woocommerce' ),
 			'manage_atlas_returns',
-			'atlas-returns',
+			'atlas-returns-for-woocommerce',
 			array( $this, 'render_main_page' )
 		);
 
 		// Submenu - History.
 		add_submenu_page(
-			'atlas-returns',
-			__( 'Return History', 'atlas-returns' ),
-			__( 'History', 'atlas-returns' ),
+			'atlas-returns-for-woocommerce',
+			__( 'Return History', 'atlas-returns-for-woocommerce' ),
+			__( 'History', 'atlas-returns-for-woocommerce' ),
 			'manage_atlas_returns',
 			'atlas-returns-history',
 			array( $this, 'render_history_page' )
@@ -59,9 +59,9 @@ class Admin {
 
 		// Submenu - Settings.
 		add_submenu_page(
-			'atlas-returns',
-			__( 'Settings', 'atlas-returns' ),
-			__( 'Settings', 'atlas-returns' ),
+			'atlas-returns-for-woocommerce',
+			__( 'Settings', 'atlas-returns-for-woocommerce' ),
+			__( 'Settings', 'atlas-returns-for-woocommerce' ),
 			'manage_atlas_returns',
 			'atlas-returns-settings',
 			array( $this, 'render_settings_page' )
@@ -70,12 +70,12 @@ class Admin {
 		// Analytics submenu - shows Pro locked page for free users.
 		$plugin          = \AtlasReturns\Plugin::instance();
 		$analytics_title = $plugin->is_pro()
-			? __( 'Analytics', 'atlas-returns' )
-			: __( 'Analytics', 'atlas-returns' ) . ' <span class="atlr-pro-tag">Pro</span>';
+			? __( 'Analytics', 'atlas-returns-for-woocommerce' )
+			: __( 'Analytics', 'atlas-returns-for-woocommerce' ) . ' <span class="atlr-pro-tag">Pro</span>';
 
 		add_submenu_page(
-			'atlas-returns',
-			__( 'Analytics', 'atlas-returns' ),
+			'atlas-returns-for-woocommerce',
+			__( 'Analytics', 'atlas-returns-for-woocommerce' ),
 			$analytics_title,
 			'manage_atlas_returns',
 			'atlas-returns-analytics',
@@ -85,9 +85,9 @@ class Admin {
 		// Pricing page for free users.
 		if ( ! $plugin->is_pro() ) {
 			add_submenu_page(
-				'atlas-returns',
-				__( 'Upgrade to Pro', 'atlas-returns' ),
-				'<span style="color: #39b54a;">' . __( 'Upgrade to Pro', 'atlas-returns' ) . '</span>',
+				'atlas-returns-for-woocommerce',
+				__( 'Upgrade to Pro', 'atlas-returns-for-woocommerce' ),
+				'<span style="color: #39b54a;">' . __( 'Upgrade to Pro', 'atlas-returns-for-woocommerce' ) . '</span>',
 				'manage_atlas_returns',
 				'atlas-returns-pricing',
 				array( $this, 'render_pricing_page' )
@@ -125,7 +125,7 @@ class Admin {
 	 */
 	public function enqueue_assets( $hook_suffix ) {
 		// Only load on our plugin pages.
-		if ( strpos( $hook_suffix, 'atlas-returns' ) === false ) {
+		if ( strpos( $hook_suffix, 'atlas-returns-for-woocommerce' ) === false ) {
 			return;
 		}
 
@@ -161,15 +161,15 @@ class Admin {
 				'availableReasons' => $plugin->get_available_reasons(),
 				'upgradeUrl'       => function_exists( 'atlr_fs' ) ? atlr_fs()->get_upgrade_url() : admin_url( 'admin.php?page=atlas-returns-pricing' ),
 				'i18n'             => array(
-					'loading'          => __( 'Loading...', 'atlas-returns' ),
-					'error'            => __( 'An error occurred.', 'atlas-returns' ),
-					'selectReason'     => __( 'Please select a return reason.', 'atlas-returns' ),
-					'enterProducts'    => __( 'Please enter products to return.', 'atlas-returns' ),
-					'enterNewProducts' => __( 'Please enter new products.', 'atlas-returns' ),
-					'confirmSubmit'    => __( 'Are you sure you want to create this return order?', 'atlas-returns' ),
-					'success'          => __( 'Return order created successfully!', 'atlas-returns' ),
-					'limitReached'     => __( 'Monthly return limit reached. Upgrade to Pro for unlimited returns.', 'atlas-returns' ),
-					'proFeature'       => __( 'This feature requires Atlas Returns Pro.', 'atlas-returns' ),
+					'loading'          => __( 'Loading...', 'atlas-returns-for-woocommerce' ),
+					'error'            => __( 'An error occurred.', 'atlas-returns-for-woocommerce' ),
+					'selectReason'     => __( 'Please select a return reason.', 'atlas-returns-for-woocommerce' ),
+					'enterProducts'    => __( 'Please enter products to return.', 'atlas-returns-for-woocommerce' ),
+					'enterNewProducts' => __( 'Please enter new products.', 'atlas-returns-for-woocommerce' ),
+					'confirmSubmit'    => __( 'Are you sure you want to create this return order?', 'atlas-returns-for-woocommerce' ),
+					'success'          => __( 'Return order created successfully!', 'atlas-returns-for-woocommerce' ),
+					'limitReached'     => __( 'Monthly return limit reached. Upgrade to Pro for unlimited returns.', 'atlas-returns-for-woocommerce' ),
+					'proFeature'       => __( 'This feature requires Atlas Returns Pro.', 'atlas-returns-for-woocommerce' ),
 				),
 			)
 		);
@@ -215,11 +215,11 @@ class Admin {
 						'info'      => '#00a0d2',
 					),
 					'i18n'    => array(
-						'returns'        => __( 'Returns', 'atlas-returns' ),
-						'refunded'       => __( 'Refunded', 'atlas-returns' ),
-						'charged'        => __( 'Charged', 'atlas-returns' ),
-						'costDifference' => __( 'Cost Difference', 'atlas-returns' ),
-						'noData'         => __( 'No data available', 'atlas-returns' ),
+						'returns'        => __( 'Returns', 'atlas-returns-for-woocommerce' ),
+						'refunded'       => __( 'Refunded', 'atlas-returns-for-woocommerce' ),
+						'charged'        => __( 'Charged', 'atlas-returns-for-woocommerce' ),
+						'costDifference' => __( 'Cost Difference', 'atlas-returns-for-woocommerce' ),
+						'noData'         => __( 'No data available', 'atlas-returns-for-woocommerce' ),
 					),
 				)
 			);
@@ -232,7 +232,7 @@ class Admin {
 	public function render_main_page() {
 		// Check user capability.
 		if ( ! current_user_can( 'manage_atlas_returns' ) ) {
-			wp_die( esc_html__( 'You do not have permission to access this page.', 'atlas-returns' ) );
+			wp_die( esc_html__( 'You do not have permission to access this page.', 'atlas-returns-for-woocommerce' ) );
 		}
 
 		$plugin = \AtlasReturns\Plugin::instance();
@@ -251,7 +251,7 @@ class Admin {
 	 */
 	public function render_history_page() {
 		if ( ! current_user_can( 'manage_atlas_returns' ) ) {
-			wp_die( esc_html__( 'You do not have permission to access this page.', 'atlas-returns' ) );
+			wp_die( esc_html__( 'You do not have permission to access this page.', 'atlas-returns-for-woocommerce' ) );
 		}
 
 		include ATLR_PLUGIN_DIR . 'includes/Admin/views/history-page.php';
@@ -262,7 +262,7 @@ class Admin {
 	 */
 	public function render_settings_page() {
 		if ( ! current_user_can( 'manage_atlas_returns' ) ) {
-			wp_die( esc_html__( 'You do not have permission to access this page.', 'atlas-returns' ) );
+			wp_die( esc_html__( 'You do not have permission to access this page.', 'atlas-returns-for-woocommerce' ) );
 		}
 
 		include ATLR_PLUGIN_DIR . 'includes/Admin/views/settings-page.php';
@@ -273,15 +273,15 @@ class Admin {
 	 */
 	public function render_analytics_page() {
 		if ( ! current_user_can( 'manage_atlas_returns' ) ) {
-			wp_die( esc_html__( 'You do not have permission to access this page.', 'atlas-returns' ) );
+			wp_die( esc_html__( 'You do not have permission to access this page.', 'atlas-returns-for-woocommerce' ) );
 		}
 
 		$plugin = \AtlasReturns\Plugin::instance();
 
 		// Show Pro locked page for free users.
 		if ( ! $plugin->is_pro() ) {
-			$feature_name        = __( 'Analytics Dashboard', 'atlas-returns' );
-			$feature_description = __( 'Get insights into your returns with charts, reports, and CSV export.', 'atlas-returns' );
+			$feature_name        = __( 'Analytics Dashboard', 'atlas-returns-for-woocommerce' );
+			$feature_description = __( 'Get insights into your returns with charts, reports, and CSV export.', 'atlas-returns-for-woocommerce' );
 			include ATLR_PLUGIN_DIR . 'includes/Admin/views/partials/pro-feature-locked.php';
 			return;
 		}
@@ -294,7 +294,7 @@ class Admin {
 	 */
 	public function render_pricing_page() {
 		if ( ! current_user_can( 'manage_atlas_returns' ) ) {
-			wp_die( esc_html__( 'You do not have permission to access this page.', 'atlas-returns' ) );
+			wp_die( esc_html__( 'You do not have permission to access this page.', 'atlas-returns-for-woocommerce' ) );
 		}
 
 		include ATLR_PLUGIN_DIR . 'includes/Admin/views/pricing-page.php';

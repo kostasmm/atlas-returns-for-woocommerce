@@ -56,7 +56,7 @@ class CouponHandler {
 		$coupon->set_description(
 			sprintf(
 				/* translators: %d: original order ID */
-				__( 'Credit coupon from return order #%d - Atlas Returns', 'atlas-returns' ),
+				__( 'Credit coupon from return order #%d - Atlas Returns', 'atlas-returns-for-woocommerce' ),
 				$order->get_id()
 			)
 		);
@@ -87,7 +87,7 @@ class CouponHandler {
 		$coupon_code = $coupon->get_code();
 		$amount      = $coupon->get_amount();
 		$expiry      = $coupon->get_date_expires();
-		$expiry_date = $expiry ? $expiry->date_i18n( get_option( 'date_format' ) ) : __( 'No expiry', 'atlas-returns' );
+		$expiry_date = $expiry ? $expiry->date_i18n( get_option( 'date_format' ) ) : __( 'No expiry', 'atlas-returns-for-woocommerce' );
 
 		$to      = $order->get_billing_email();
 		$subject = $this->get_email_subject();
@@ -144,7 +144,7 @@ class CouponHandler {
 		if ( empty( $subject ) ) {
 			$subject = sprintf(
 				/* translators: %s: site name */
-				__( 'Your Credit Coupon from %s', 'atlas-returns' ),
+				__( 'Your Credit Coupon from %s', 'atlas-returns-for-woocommerce' ),
 				get_bloginfo( 'name' )
 			);
 		}
@@ -181,30 +181,30 @@ class CouponHandler {
 			'<p>%s</p>',
 			sprintf(
 				/* translators: %s: customer first name */
-				esc_html__( 'Dear %s,', 'atlas-returns' ),
+				esc_html__( 'Dear %s,', 'atlas-returns-for-woocommerce' ),
 				esc_html( $first_name )
 			)
 		);
 
 		$html .= sprintf(
 			'<p>%s</p>',
-			esc_html__( 'We have created a coupon for you as part of your return order. You can use this coupon for your next purchase.', 'atlas-returns' )
+			esc_html__( 'We have created a coupon for you as part of your return order. You can use this coupon for your next purchase.', 'atlas-returns-for-woocommerce' )
 		);
 
 		$html .= '<div style="background: #f5f5f5; padding: 20px; border-radius: 5px; margin: 20px 0;">';
 		$html .= sprintf(
 			'<p><strong>%s</strong> %s</p>',
-			esc_html__( 'Coupon Code:', 'atlas-returns' ),
+			esc_html__( 'Coupon Code:', 'atlas-returns-for-woocommerce' ),
 			'<code style="background: #fff; padding: 5px 10px; font-size: 18px;">' . esc_html( $coupon_code ) . '</code>'
 		);
 		$html .= sprintf(
 			'<p><strong>%s</strong> %s</p>',
-			esc_html__( 'Amount:', 'atlas-returns' ),
+			esc_html__( 'Amount:', 'atlas-returns-for-woocommerce' ),
 			wp_kses_post( wc_price( $amount ) )
 		);
 		$html .= sprintf(
 			'<p><strong>%s</strong> %s</p>',
-			esc_html__( 'Valid Until:', 'atlas-returns' ),
+			esc_html__( 'Valid Until:', 'atlas-returns-for-woocommerce' ),
 			esc_html( $expiry_date )
 		);
 		$html .= '</div>';
@@ -213,7 +213,7 @@ class CouponHandler {
 			'<p>%s</p>',
 			sprintf(
 				/* translators: %s: site name */
-				esc_html__( 'Thank you for shopping with %s!', 'atlas-returns' ),
+				esc_html__( 'Thank you for shopping with %s!', 'atlas-returns-for-woocommerce' ),
 				esc_html( $site_name )
 			)
 		);

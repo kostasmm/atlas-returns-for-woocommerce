@@ -44,7 +44,7 @@ class DashboardWidget {
 
 		wp_add_dashboard_widget(
 			self::WIDGET_ID,
-			__( 'Atlas Returns - This Month', 'atlas-returns' ),
+			__( 'Atlas Returns - This Month', 'atlas-returns-for-woocommerce' ),
 			array( $this, 'render_widget' ),
 			null,
 			null,
@@ -67,23 +67,23 @@ class DashboardWidget {
 			<div class="atlr-widget-stats">
 				<div class="atlr-widget-stat">
 					<span class="atlr-stat-value"><?php echo esc_html( $summary['total_returns'] ); ?></span>
-					<span class="atlr-stat-label"><?php esc_html_e( 'Returns', 'atlas-returns' ); ?></span>
+					<span class="atlr-stat-label"><?php esc_html_e( 'Returns', 'atlas-returns-for-woocommerce' ); ?></span>
 				</div>
 				<div class="atlr-widget-stat">
 					<span class="atlr-stat-value"><?php echo esc_html( $summary['return_rate'] ); ?>%</span>
-					<span class="atlr-stat-label"><?php esc_html_e( 'Return Rate', 'atlas-returns' ); ?></span>
+					<span class="atlr-stat-label"><?php esc_html_e( 'Return Rate', 'atlas-returns-for-woocommerce' ); ?></span>
 				</div>
 				<div class="atlr-widget-stat">
 					<span class="atlr-stat-value <?php echo $summary['total_cost_difference'] < 0 ? 'atlr-negative' : 'atlr-positive'; ?>">
 						<?php echo wp_kses_post( wc_price( $summary['total_cost_difference'] ) ); ?>
 					</span>
-					<span class="atlr-stat-label"><?php esc_html_e( 'Net Cost', 'atlas-returns' ); ?></span>
+					<span class="atlr-stat-label"><?php esc_html_e( 'Net Cost', 'atlas-returns-for-woocommerce' ); ?></span>
 				</div>
 			</div>
 
 			<?php if ( ! empty( $by_reason ) ) : ?>
 				<div class="atlr-widget-breakdown">
-					<h4><?php esc_html_e( 'By Reason', 'atlas-returns' ); ?></h4>
+					<h4><?php esc_html_e( 'By Reason', 'atlas-returns-for-woocommerce' ); ?></h4>
 					<ul>
 						<?php foreach ( $by_reason as $reason ) : ?>
 							<li>
@@ -97,7 +97,7 @@ class DashboardWidget {
 
 			<div class="atlr-widget-footer">
 				<a href="<?php echo esc_url( admin_url( 'admin.php?page=atlas-returns-analytics' ) ); ?>">
-					<?php esc_html_e( 'View Full Analytics', 'atlas-returns' ); ?> &rarr;
+					<?php esc_html_e( 'View Full Analytics', 'atlas-returns-for-woocommerce' ); ?> &rarr;
 				</a>
 			</div>
 		</div>

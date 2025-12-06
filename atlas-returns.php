@@ -131,7 +131,7 @@ function atlr_check_requirements() {
 	if ( version_compare( PHP_VERSION, ATLR_MIN_PHP_VERSION, '<' ) ) {
 		$errors[] = sprintf(
 			/* translators: 1: Current PHP version, 2: Required PHP version */
-			__( 'Atlas Returns requires PHP version %2$s or higher. You are running version %1$s.', 'atlas-returns' ),
+			__( 'Atlas Returns requires PHP version %2$s or higher. You are running version %1$s.', 'atlas-returns-for-woocommerce' ),
 			PHP_VERSION,
 			ATLR_MIN_PHP_VERSION
 		);
@@ -141,7 +141,7 @@ function atlr_check_requirements() {
 	if ( version_compare( get_bloginfo( 'version' ), ATLR_MIN_WP_VERSION, '<' ) ) {
 		$errors[] = sprintf(
 			/* translators: 1: Current WordPress version, 2: Required WordPress version */
-			__( 'Atlas Returns requires WordPress version %2$s or higher. You are running version %1$s.', 'atlas-returns' ),
+			__( 'Atlas Returns requires WordPress version %2$s or higher. You are running version %1$s.', 'atlas-returns-for-woocommerce' ),
 			get_bloginfo( 'version' ),
 			ATLR_MIN_WP_VERSION
 		);
@@ -149,11 +149,11 @@ function atlr_check_requirements() {
 
 	// Check WooCommerce.
 	if ( ! class_exists( 'WooCommerce' ) ) {
-		$errors[] = __( 'Atlas Returns requires WooCommerce to be installed and active.', 'atlas-returns' );
+		$errors[] = __( 'Atlas Returns requires WooCommerce to be installed and active.', 'atlas-returns-for-woocommerce' );
 	} elseif ( defined( 'WC_VERSION' ) && version_compare( WC_VERSION, ATLR_MIN_WC_VERSION, '<' ) ) {
 		$errors[] = sprintf(
 			/* translators: 1: Current WooCommerce version, 2: Required WooCommerce version */
-			__( 'Atlas Returns requires WooCommerce version %2$s or higher. You are running version %1$s.', 'atlas-returns' ),
+			__( 'Atlas Returns requires WooCommerce version %2$s or higher. You are running version %1$s.', 'atlas-returns-for-woocommerce' ),
 			WC_VERSION,
 			ATLR_MIN_WC_VERSION
 		);
@@ -180,7 +180,7 @@ function atlr_admin_notice_requirements() {
 	}
 
 	echo '<div class="notice notice-error">';
-	echo '<p><strong>' . esc_html__( 'Atlas Returns for WooCommerce', 'atlas-returns' ) . '</strong></p>';
+	echo '<p><strong>' . esc_html__( 'Atlas Returns for WooCommerce', 'atlas-returns-for-woocommerce' ) . '</strong></p>';
 	echo '<ul>';
 	foreach ( $errors as $error ) {
 		echo '<li>' . esc_html( $error ) . '</li>';
@@ -195,7 +195,7 @@ add_action( 'admin_notices', 'atlr_admin_notice_requirements' );
  */
 function atlr_init() {
 	// Load text domain.
-	load_plugin_textdomain( 'atlas-returns', false, dirname( ATLR_PLUGIN_BASENAME ) . '/languages' );
+	load_plugin_textdomain( 'atlas-returns-for-woocommerce', false, dirname( ATLR_PLUGIN_BASENAME ) . '/languages' );
 
 	// Check requirements.
 	if ( ! atlr_check_requirements() ) {
@@ -239,7 +239,7 @@ function atlr_plugin_action_links( $links ) {
 	$settings_link = sprintf(
 		'<a href="%s">%s</a>',
 		admin_url( 'admin.php?page=atlas-returns-settings' ),
-		__( 'Settings', 'atlas-returns' )
+		__( 'Settings', 'atlas-returns-for-woocommerce' )
 	);
 
 	array_unshift( $links, $settings_link );
@@ -249,7 +249,7 @@ function atlr_plugin_action_links( $links ) {
 		$links['upgrade'] = sprintf(
 			'<a href="%s" style="color: #39b54a; font-weight: bold;">%s</a>',
 			atlr_fs()->get_upgrade_url(),
-			__( 'Upgrade to Pro', 'atlas-returns' )
+			__( 'Upgrade to Pro', 'atlas-returns-for-woocommerce' )
 		);
 	}
 

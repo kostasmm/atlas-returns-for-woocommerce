@@ -248,7 +248,7 @@ class Reports {
 
 			$top_products[] = array(
 				'sku'          => $sku,
-				'name'         => $product ? $product->get_name() : __( 'Unknown Product', 'atlas-returns' ),
+				'name'         => $product ? $product->get_name() : __( 'Unknown Product', 'atlas-returns-for-woocommerce' ),
 				'return_count' => $return_count,
 				'product_id'   => $product_id,
 				'edit_url'     => $product_id ? get_edit_post_link( $product_id ) : '',

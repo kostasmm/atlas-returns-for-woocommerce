@@ -44,12 +44,12 @@ class AjaxHandler {
 	private function verify_request() {
 		// Check nonce.
 		if ( ! check_ajax_referer( 'atlr_nonce', 'nonce', false ) ) {
-			wp_send_json_error( __( 'Security check failed.', 'atlas-returns' ) );
+			wp_send_json_error( __( 'Security check failed.', 'atlas-returns-for-woocommerce' ) );
 		}
 
 		// Check capability.
 		if ( ! current_user_can( 'manage_atlas_returns' ) ) {
-			wp_send_json_error( __( 'Permission denied.', 'atlas-returns' ) );
+			wp_send_json_error( __( 'Permission denied.', 'atlas-returns-for-woocommerce' ) );
 		}
 
 		return true;
@@ -98,13 +98,13 @@ class AjaxHandler {
 		$identifier = isset( $_POST['order_id'] ) ? sanitize_text_field( wp_unslash( $_POST['order_id'] ) ) : '';
 
 		if ( empty( $identifier ) ) {
-			wp_send_json_error( __( 'Please enter an order ID or phone number.', 'atlas-returns' ) );
+			wp_send_json_error( __( 'Please enter an order ID or phone number.', 'atlas-returns-for-woocommerce' ) );
 		}
 
 		$order = $this->get_order_by_identifier( $identifier );
 
 		if ( ! $order ) {
-			wp_send_json_error( __( 'Order not found.', 'atlas-returns' ) );
+			wp_send_json_error( __( 'Order not found.', 'atlas-returns-for-woocommerce' ) );
 		}
 
 		// Build preview HTML.
@@ -128,7 +128,7 @@ class AjaxHandler {
 		$order = $this->get_order_by_identifier( $identifier );
 
 		if ( ! $order ) {
-			wp_send_json_error( __( 'Order not found.', 'atlas-returns' ) );
+			wp_send_json_error( __( 'Order not found.', 'atlas-returns-for-woocommerce' ) );
 		}
 
 		// Parse SKUs.
@@ -161,7 +161,7 @@ class AjaxHandler {
 			wp_send_json_error(
 				sprintf(
 					/* translators: %s: upgrade URL */
-					__( 'Monthly return limit reached. <a href="%s" target="_blank">Upgrade to Pro</a> for unlimited returns.', 'atlas-returns' ),
+					__( 'Monthly return limit reached. <a href="%s" target="_blank">Upgrade to Pro</a> for unlimited returns.', 'atlas-returns-for-woocommerce' ),
 					'https://pluginatlas.com/atlas-returns'
 				)
 			);
@@ -175,15 +175,15 @@ class AjaxHandler {
 
 		// Validate inputs.
 		if ( empty( $reason ) ) {
-			wp_send_json_error( __( 'Please select a return reason.', 'atlas-returns' ) );
+			wp_send_json_error( __( 'Please select a return reason.', 'atlas-returns-for-woocommerce' ) );
 		}
 
 		if ( empty( $products_to_replace ) ) {
-			wp_send_json_error( __( 'Please enter products to return.', 'atlas-returns' ) );
+			wp_send_json_error( __( 'Please enter products to return.', 'atlas-returns-for-woocommerce' ) );
 		}
 
 		if ( empty( $new_products ) ) {
-			wp_send_json_error( __( 'Please enter new products.', 'atlas-returns' ) );
+			wp_send_json_error( __( 'Please enter new products.', 'atlas-returns-for-woocommerce' ) );
 		}
 
 		// Check reason availability for free version.
@@ -192,7 +192,7 @@ class AjaxHandler {
 				wp_send_json_error(
 					sprintf(
 						/* translators: %s: upgrade URL */
-						__( 'This return reason requires Pro. <a href="%s" target="_blank">Upgrade now</a>.', 'atlas-returns' ),
+						__( 'This return reason requires Pro. <a href="%s" target="_blank">Upgrade now</a>.', 'atlas-returns-for-woocommerce' ),
 						'https://pluginatlas.com/atlas-returns'
 					)
 				);
@@ -202,7 +202,7 @@ class AjaxHandler {
 		$order = $this->get_order_by_identifier( $identifier );
 
 		if ( ! $order ) {
-			wp_send_json_error( __( 'Order not found.', 'atlas-returns' ) );
+			wp_send_json_error( __( 'Order not found.', 'atlas-returns-for-woocommerce' ) );
 		}
 
 		// Parse SKUs.
@@ -261,7 +261,7 @@ class AjaxHandler {
 		// Build success message.
 		$message = sprintf(
 			/* translators: %d: new order ID */
-			__( 'Return order created successfully. Order ID: %d', 'atlas-returns' ),
+			__( 'Return order created successfully. Order ID: %d', 'atlas-returns-for-woocommerce' ),
 			$new_order->get_id()
 		);
 
@@ -270,13 +270,13 @@ class AjaxHandler {
 			if ( $create_coupon ) {
 				$message .= ' ' . sprintf(
 					/* translators: %s: coupon amount */
-					__( 'A coupon for %s has been created and emailed to the customer.', 'atlas-returns' ),
+					__( 'A coupon for %s has been created and emailed to the customer.', 'atlas-returns-for-woocommerce' ),
 					wc_price( $refund_amount )
 				);
 			} else {
 				$message .= ' ' . sprintf(
 					/* translators: %s: refund amount */
-					__( 'You need to refund %s to the customer.', 'atlas-returns' ),
+					__( 'You need to refund %s to the customer.', 'atlas-returns-for-woocommerce' ),
 					wc_price( $refund_amount )
 				);
 			}
@@ -369,39 +369,39 @@ class AjaxHandler {
 		$warning_class = $days_ago >= 20 ? 'atlr-warning' : 'atlr-success';
 		$days_text     = sprintf(
 			/* translators: %d: number of days */
-			_n( '%d day ago', '%d days ago', $days_ago, 'atlas-returns' ),
+			_n( '%d day ago', '%d days ago', $days_ago, 'atlas-returns-for-woocommerce' ),
 			$days_ago
 		);
 
 		if ( $days_ago >= 20 ) {
-			$days_text = __( 'WARNING', 'atlas-returns' ) . ' - ' . $days_text;
+			$days_text = __( 'WARNING', 'atlas-returns-for-woocommerce' ) . ' - ' . $days_text;
 		}
 
 		ob_start();
 		?>
 		<div class="atlr-order-info">
 			<p>
-				<strong><?php esc_html_e( 'Order ID:', 'atlas-returns' ); ?></strong> <?php echo esc_html( $order->get_id() ); ?> |
-				<strong><?php esc_html_e( 'Name:', 'atlas-returns' ); ?></strong> <?php echo esc_html( $order->get_billing_first_name() . ' ' . $order->get_billing_last_name() ); ?> |
-				<strong><?php esc_html_e( 'Phone:', 'atlas-returns' ); ?></strong> <?php echo esc_html( $order->get_billing_phone() ); ?>
+				<strong><?php esc_html_e( 'Order ID:', 'atlas-returns-for-woocommerce' ); ?></strong> <?php echo esc_html( $order->get_id() ); ?> |
+				<strong><?php esc_html_e( 'Name:', 'atlas-returns-for-woocommerce' ); ?></strong> <?php echo esc_html( $order->get_billing_first_name() . ' ' . $order->get_billing_last_name() ); ?> |
+				<strong><?php esc_html_e( 'Phone:', 'atlas-returns-for-woocommerce' ); ?></strong> <?php echo esc_html( $order->get_billing_phone() ); ?>
 			</p>
 			<p>
-				<strong><?php esc_html_e( 'Address:', 'atlas-returns' ); ?></strong> <?php echo esc_html( $order->get_billing_address_1() ); ?> |
-				<strong><?php esc_html_e( 'City:', 'atlas-returns' ); ?></strong> <?php echo esc_html( $order->get_billing_city() ); ?> |
-				<strong><?php esc_html_e( 'Postcode:', 'atlas-returns' ); ?></strong> <?php echo esc_html( $order->get_billing_postcode() ); ?>
+				<strong><?php esc_html_e( 'Address:', 'atlas-returns-for-woocommerce' ); ?></strong> <?php echo esc_html( $order->get_billing_address_1() ); ?> |
+				<strong><?php esc_html_e( 'City:', 'atlas-returns-for-woocommerce' ); ?></strong> <?php echo esc_html( $order->get_billing_city() ); ?> |
+				<strong><?php esc_html_e( 'Postcode:', 'atlas-returns-for-woocommerce' ); ?></strong> <?php echo esc_html( $order->get_billing_postcode() ); ?>
 			</p>
 			<p>
-				<strong><?php esc_html_e( 'Order Date:', 'atlas-returns' ); ?></strong> <?php echo esc_html( $formatted_date ); ?>
+				<strong><?php esc_html_e( 'Order Date:', 'atlas-returns-for-woocommerce' ); ?></strong> <?php echo esc_html( $formatted_date ); ?>
 				<span class="<?php echo esc_attr( $warning_class ); ?>">(<?php echo esc_html( $days_text ); ?>)</span>
 			</p>
 			<p>
-				<strong><?php esc_html_e( 'Status:', 'atlas-returns' ); ?></strong> <?php echo esc_html( wc_get_order_status_name( $order->get_status() ) ); ?> |
-				<strong><?php esc_html_e( 'Payment:', 'atlas-returns' ); ?></strong> <?php echo esc_html( $order->get_payment_method_title() ); ?> |
-				<strong><?php esc_html_e( 'Shipping:', 'atlas-returns' ); ?></strong> <?php echo esc_html( $order->get_shipping_method() ); ?>
+				<strong><?php esc_html_e( 'Status:', 'atlas-returns-for-woocommerce' ); ?></strong> <?php echo esc_html( wc_get_order_status_name( $order->get_status() ) ); ?> |
+				<strong><?php esc_html_e( 'Payment:', 'atlas-returns-for-woocommerce' ); ?></strong> <?php echo esc_html( $order->get_payment_method_title() ); ?> |
+				<strong><?php esc_html_e( 'Shipping:', 'atlas-returns-for-woocommerce' ); ?></strong> <?php echo esc_html( $order->get_shipping_method() ); ?>
 			</p>
 		</div>
 
-		<h3><?php esc_html_e( 'Order Items', 'atlas-returns' ); ?></h3>
+		<h3><?php esc_html_e( 'Order Items', 'atlas-returns-for-woocommerce' ); ?></h3>
 		<ul class="atlr-order-items">
 			<?php foreach ( $order->get_items() as $item ) : ?>
 				<?php
@@ -432,7 +432,7 @@ class AjaxHandler {
 	private function build_calculation_html( $result ) {
 		ob_start();
 		?>
-		<h3><?php esc_html_e( 'Products to Return:', 'atlas-returns' ); ?></h3>
+		<h3><?php esc_html_e( 'Products to Return:', 'atlas-returns-for-woocommerce' ); ?></h3>
 		<ul class="atlr-return-products">
 			<?php foreach ( $result->get_return_products() as $product_data ) : ?>
 				<li class="atlr-warning-text">
@@ -443,7 +443,7 @@ class AjaxHandler {
 			<?php endforeach; ?>
 		</ul>
 
-		<h3><?php esc_html_e( 'New Products:', 'atlas-returns' ); ?></h3>
+		<h3><?php esc_html_e( 'New Products:', 'atlas-returns-for-woocommerce' ); ?></h3>
 		<ul class="atlr-new-products">
 			<?php foreach ( $result->get_new_products() as $product_data ) : ?>
 				<?php
@@ -454,36 +454,36 @@ class AjaxHandler {
 					(SKU: <?php echo esc_html( $product_data['sku'] ); ?>) -
 					<?php echo wp_kses_post( wc_price( $product_data['price'] ) ); ?> -
 					<span class="atlr-stock">
-						(<?php esc_html_e( 'Stock:', 'atlas-returns' ); ?> <?php echo esc_html( $product_data['stock'] ); ?>)
+						(<?php esc_html_e( 'Stock:', 'atlas-returns-for-woocommerce' ); ?> <?php echo esc_html( $product_data['stock'] ); ?>)
 					</span>
 				</li>
 			<?php endforeach; ?>
 		</ul>
 
-		<h3><?php esc_html_e( 'Cost Breakdown:', 'atlas-returns' ); ?></h3>
+		<h3><?php esc_html_e( 'Cost Breakdown:', 'atlas-returns-for-woocommerce' ); ?></h3>
 		<div class="atlr-cost-breakdown">
 			<p>
-				<strong><?php esc_html_e( 'Total Cost of Returned Products:', 'atlas-returns' ); ?></strong>
+				<strong><?php esc_html_e( 'Total Cost of Returned Products:', 'atlas-returns-for-woocommerce' ); ?></strong>
 				<?php echo wp_kses_post( wc_price( $result->get_total_return_cost() ) ); ?>
 			</p>
 			<p>
-				<strong><?php esc_html_e( 'Total Cost of New Products:', 'atlas-returns' ); ?></strong>
+				<strong><?php esc_html_e( 'Total Cost of New Products:', 'atlas-returns-for-woocommerce' ); ?></strong>
 				<?php echo wp_kses_post( wc_price( $result->get_total_new_cost() ) ); ?>
 			</p>
 			<?php if ( $result->get_shipping_cost() > 0 ) : ?>
 				<p>
-					<strong><?php esc_html_e( 'Shipping Cost:', 'atlas-returns' ); ?></strong>
+					<strong><?php esc_html_e( 'Shipping Cost:', 'atlas-returns-for-woocommerce' ); ?></strong>
 					<?php echo wp_kses_post( wc_price( $result->get_shipping_cost() ) ); ?>
 				</p>
 			<?php endif; ?>
 			<?php if ( $result->get_cod_fee() > 0 ) : ?>
 				<p>
-					<strong><?php esc_html_e( 'COD Fee:', 'atlas-returns' ); ?></strong>
+					<strong><?php esc_html_e( 'COD Fee:', 'atlas-returns-for-woocommerce' ); ?></strong>
 					<?php echo wp_kses_post( wc_price( $result->get_cod_fee() ) ); ?>
 				</p>
 			<?php endif; ?>
 			<p class="atlr-total-difference">
-				<strong><?php esc_html_e( 'Total Cost Difference:', 'atlas-returns' ); ?></strong>
+				<strong><?php esc_html_e( 'Total Cost Difference:', 'atlas-returns-for-woocommerce' ); ?></strong>
 				<?php echo wp_kses_post( wc_price( $result->get_total_cost_difference() ) ); ?>
 			</p>
 		</div>
@@ -492,7 +492,7 @@ class AjaxHandler {
 			<div class="atlr-coupon-option">
 				<label>
 					<input type="checkbox" id="atlr_create_coupon" name="create_coupon" value="1" />
-					<?php esc_html_e( 'Create coupon for remaining credit?', 'atlas-returns' ); ?>
+					<?php esc_html_e( 'Create coupon for remaining credit?', 'atlas-returns-for-woocommerce' ); ?>
 				</label>
 			</div>
 		<?php endif; ?>

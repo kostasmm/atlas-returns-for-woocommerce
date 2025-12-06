@@ -33,11 +33,11 @@ class CsvExporter {
 		}
 
 		if ( ! isset( $_GET['_wpnonce'] ) || ! wp_verify_nonce( sanitize_text_field( wp_unslash( $_GET['_wpnonce'] ) ), 'atlr_export_csv' ) ) {
-			wp_die( esc_html__( 'Security check failed.', 'atlas-returns' ) );
+			wp_die( esc_html__( 'Security check failed.', 'atlas-returns-for-woocommerce' ) );
 		}
 
 		if ( ! current_user_can( 'manage_atlas_returns' ) ) {
-			wp_die( esc_html__( 'Permission denied.', 'atlas-returns' ) );
+			wp_die( esc_html__( 'Permission denied.', 'atlas-returns-for-woocommerce' ) );
 		}
 
 		$this->generate_csv();
@@ -50,7 +50,7 @@ class CsvExporter {
 		check_ajax_referer( 'atlr_analytics_nonce', 'nonce' );
 
 		if ( ! current_user_can( 'manage_atlas_returns' ) ) {
-			wp_send_json_error( __( 'Permission denied.', 'atlas-returns' ) );
+			wp_send_json_error( __( 'Permission denied.', 'atlas-returns-for-woocommerce' ) );
 		}
 
 		// Generate export URL with nonce.
@@ -113,26 +113,26 @@ class CsvExporter {
 		fputcsv(
 			$output,
 			array(
-				__( 'ID', 'atlas-returns' ),
-				__( 'Original Order ID', 'atlas-returns' ),
-				__( 'Return Order ID', 'atlas-returns' ),
-				__( 'Reason', 'atlas-returns' ),
-				__( 'Status', 'atlas-returns' ),
-				__( 'Return Products (SKUs)', 'atlas-returns' ),
-				__( 'New Products (SKUs)', 'atlas-returns' ),
-				__( 'Cost Difference', 'atlas-returns' ),
-				__( 'Shipping Cost', 'atlas-returns' ),
-				__( 'COD Fee', 'atlas-returns' ),
-				__( 'Coupon ID', 'atlas-returns' ),
-				__( 'Created By', 'atlas-returns' ),
-				__( 'Created At', 'atlas-returns' ),
+				__( 'ID', 'atlas-returns-for-woocommerce' ),
+				__( 'Original Order ID', 'atlas-returns-for-woocommerce' ),
+				__( 'Return Order ID', 'atlas-returns-for-woocommerce' ),
+				__( 'Reason', 'atlas-returns-for-woocommerce' ),
+				__( 'Status', 'atlas-returns-for-woocommerce' ),
+				__( 'Return Products (SKUs)', 'atlas-returns-for-woocommerce' ),
+				__( 'New Products (SKUs)', 'atlas-returns-for-woocommerce' ),
+				__( 'Cost Difference', 'atlas-returns-for-woocommerce' ),
+				__( 'Shipping Cost', 'atlas-returns-for-woocommerce' ),
+				__( 'COD Fee', 'atlas-returns-for-woocommerce' ),
+				__( 'Coupon ID', 'atlas-returns-for-woocommerce' ),
+				__( 'Created By', 'atlas-returns-for-woocommerce' ),
+				__( 'Created At', 'atlas-returns-for-woocommerce' ),
 			)
 		);
 
 		// CSV data rows.
 		foreach ( $returns as $return ) {
 			$user         = get_userdata( $return['created_by'] );
-			$created_by   = $user ? $user->display_name : __( 'Unknown', 'atlas-returns' );
+			$created_by   = $user ? $user->display_name : __( 'Unknown', 'atlas-returns-for-woocommerce' );
 			$reason_label = $reason_labels[ $return['reason'] ] ?? $return['reason'];
 
 			// Parse JSON SKUs.
