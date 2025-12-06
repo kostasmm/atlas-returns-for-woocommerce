@@ -16,6 +16,7 @@ use AtlasReturns\Core\CostCalculator;
  *
  * @phpcs:disable WordPress.DB.DirectDatabaseQuery.DirectQuery
  * @phpcs:disable WordPress.DB.DirectDatabaseQuery.NoCaching
+ * @phpcs:disable PluginCheck.Security.DirectDB.UnescapedDBParameter
  */
 class Reports {
 

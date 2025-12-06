@@ -27,7 +27,7 @@ global $wpdb;
 
 // Remove custom database table.
 $table_name = $wpdb->prefix . 'atlr_returns';
-// phpcs:ignore WordPress.DB.PreparedSQL.InterpolatedNotPrepared,WordPress.DB.DirectDatabaseQuery.DirectQuery,WordPress.DB.DirectDatabaseQuery.NoCaching,WordPress.DB.DirectDatabaseQuery.SchemaChange -- Uninstall cleanup.
+// phpcs:ignore WordPress.DB.PreparedSQL.InterpolatedNotPrepared,WordPress.DB.DirectDatabaseQuery.DirectQuery,WordPress.DB.DirectDatabaseQuery.NoCaching,WordPress.DB.DirectDatabaseQuery.SchemaChange,PluginCheck.Security.DirectDB.UnescapedDBParameter -- Uninstall cleanup.
 $wpdb->query( "DROP TABLE IF EXISTS {$table_name}" );
 
 // Remove plugin options.

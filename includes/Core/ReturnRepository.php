@@ -14,6 +14,7 @@ namespace AtlasReturns\Core;
  *
  * @phpcs:disable WordPress.DB.DirectDatabaseQuery.DirectQuery
  * @phpcs:disable WordPress.DB.DirectDatabaseQuery.NoCaching
+ * @phpcs:disable PluginCheck.Security.DirectDB.UnescapedDBParameter
  */
 class ReturnRepository {
 

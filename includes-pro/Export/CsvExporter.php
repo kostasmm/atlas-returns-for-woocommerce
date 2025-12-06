@@ -93,7 +93,7 @@ class CsvExporter {
 			$where .= $wpdb->prepare( ' AND created_at <= %s', $date_to . ' 23:59:59' );
 		}
 
-		// phpcs:ignore WordPress.DB.PreparedSQL.InterpolatedNotPrepared,WordPress.DB.DirectDatabaseQuery.DirectQuery,WordPress.DB.DirectDatabaseQuery.NoCaching -- Custom table, $where built with prepare().
+		// phpcs:ignore WordPress.DB.PreparedSQL.InterpolatedNotPrepared,WordPress.DB.DirectDatabaseQuery.DirectQuery,WordPress.DB.DirectDatabaseQuery.NoCaching,PluginCheck.Security.DirectDB.UnescapedDBParameter -- Custom table, $where built with prepare().
 		$returns = $wpdb->get_results(
 			"SELECT * FROM {$table_name} WHERE {$where} ORDER BY created_at DESC",
 			ARRAY_A
